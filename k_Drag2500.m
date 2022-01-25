@@ -518,5 +518,5 @@ title('"k" Control Gains for Drag Force (RE:2500)','FontName','Times');
 legend({'k=0.001','k=0.01','k=0.5','k=0.99'},"Location","east");
 set(gcf, 'color', 'none');
 set(legend,'color','none');
-set(gca, 'color', 'none','FontSize',12); 
+set(gca, 'color', 'none','FontSize',10.5); 
 export_fig('k_Drag_2500.png', '-png', '-eps', '-transparent','-m5');

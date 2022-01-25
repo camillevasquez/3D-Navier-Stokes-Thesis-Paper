@@ -517,5 +517,5 @@ title('"k" Control Gains for L_2 Norm Perturbation Energy (RE:2500)','FontName',
 legend({'k=0.001','k=0.01','k=0.5','k=0.99'},"Location","southwest");
 set(gcf, 'color', 'none');
 set(legend,'color','none');
-set(gca, 'color', 'none','FontSize',12); 
-export_fig('k_Drag_2500.png', '-png', '-eps', '-transparent','-m5');
+set(gca, 'color', 'none','FontSize',10.5); 
+export_fig('k_L2_2500.png', '-png', '-eps', '-transparent','-m5');
