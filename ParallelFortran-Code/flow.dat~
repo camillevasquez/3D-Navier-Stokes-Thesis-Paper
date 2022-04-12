@@ -1,0 +1,95 @@
+7500.d0 Reynolds number, re = Uh/nu where (300 no?)
+          U is free-stream vel. or centerline vel. of laminar parabolic profile
+          h is a wall-normal length scale, e.g. channel half-height/jet diam.
+          nu is the kinematic velocity of the fluid
+0.d+0	ctrlu		U-conrol gain
+0.d+0	ctrlw		W-conrol gain
+6.d0	lx		Length of box in x-direction
+3.0d0	lx/lz		Aspect ratio of box in wall-parallel directions
+1			Should the above lengths be scaled by pi? (1=yes,0=no)
+128	nx		Number of points in x-direction
+200	ny		Number of points in y-direction
+64	nz		Number of points in z-direction
+192	nx2		Number of points in x-direciton on de-aliased grid
+96 	nz2		Number of points in z-direciton on de-aliased grid
+0	nscalar		Number of scalars to be included in computation
+0.7d0 0.7d0	pr(i)	Prandtl and Schmidt numbers of scalars
+0.4d0 0.4d0	pr_t(i)	Turbulent Prandtl and Schmidt numbers of scalars
+0	split_scalar	Use dimensional splitting for scalar computation?
+0	subgrid 	Turn on dynamic model for subgrid fluxes? (1=yes,0=no)
+3	filter_dim	How many dimensions to filter over? (2=plane, 3=box)
+1       lagr_avg	Use plane- or Lagrangian averaging? (0=plane, 1=Lagr.)
+0	dynamic_scalar	Dynamically determine subgrid scalar flux? (0=usePr_t)
+5000	tend		Number of time steps
+50000	output_step	Output run info every ### time steps in t_###.vtk
+100000	save_step	Save/ back up velocity field every ### time steps
+1000	l2_step		Save l2_pert_norm  every ### time steps
+0	read_vel	Read initial velocity in from file savevel.out
+1	save_vel	Save final (and intermediate) fields to newvel.out
+1	vel_out		Output field every output_step steps to vel####
+			(useful for graphics/post-processing)
+0	snap_out	Output double precision snapshot to snap####
+			(useful for providing baseflow for linearized sim.)
+9	which_test	If test run (i.e. read_vel=0), run one of these tests
+1.d-1	disturb_ampl	with this disturbance amplitude.
+			Set disturb_ampl <= 1.d-4 for which_test = 2, 5 or 8.
+  which_test=0   start with zero velocity field
+  which_test=1   start with parabolic mean profile
+  which_test=2   re=7500. lx=2. least stable Orr-Sommerfeld mode, kx=1
+  which_test=3   linearized simulation with white noise (no filtering)
+  which_test=4   rounded mean profile U=0.75*(1-y^8) plus noise*k^-2
+  which_test=5   re=7500. lz=2. least stable Orr-Sommerfeld mode, kz=1
+  which_test=6   re=10.  exact solution, decaying vortices, e.g. Kim/Moin 1985
+  which_test=8   re=7500. lx=lz=2*sqrt(2) least stable O-S mode, kx=kz=1
+  which_test=9   rounded mean/bl profile plus raised cosine filtered noise
+0	test_run	Should fftw plans be estimated? (1=yes,0=no)
+1	fix_mass	Should mass flow through domain be fixed?
+1	dt_flag		Should time-step adapt to maximize cfl number?
+0	divg_check	Should divergence be checked during the run?
+0.0d0	beta		Angle of mean pressure gradient with x-axis, beta
+			for convenience, angle is normalized by pi/2 so that
+			beta=1. corresponds to a p_grad along the +ive z-axis. 
+OUTPUT FILE PARAMETERS
+1	xskip		Output value at every ## grid points in x-direction.
+1	yskip		Output value at every ## grid points in y-direction.
+1	zskip		Output value at every ## grid points in z-direction.
+0	filter_output	Filter grid frequencies not represented in output.
+GRID PARAMETERS FOR JET IN CROSSFLOW/BL SIMULATIONS
+0	bl_grid		Should the domain be a boundary layer or channel?
+1.d0	ly		Box height
+0.5d0	ly_half		Height of boundary layer (using displacement thickness)
+0.33d0	delta_bl	Height of boundary layer (using displacement thickness)
+5	nbl		Number of grid points to be placed in bl
+JET IN CROSSFLOW PARAMETERS
+0	crossflow	Switch on jet in crossflow? (1=yes, 0=no)
+0	filter_jet_profile  Should the jet profiles be smoothed with a raised
+			cosine filter to remove its high waveno. component?
+1.d0	jet_diam	Diameter of crossflow jet
+0.d0	forcing_phase	Relative initial phase of forcing between top/bottom 
+			jets (0.d0 = in phase, 1.d0 = pi/2 out of phase)
+TOP WALL CROSSFLOW JET PARAMETERS
+0.125d0	xjet_top	x-position of jet outflow (as fraction of lx).
+0.5d0	zjet_top	z-position of jet outflow (as fraction of lz).
+0.d0	jetmag_top	Jet velocity ratio
+0.0d0	forcing_top	Magnitude of Forcing: vjet = jetmag+forcing*sin(freq*t)
+0.2d0	for_freq_top	Strouhal number
+0.0d0	swirl_top	swirl number
+BOTTOM WALL CROSSFLOW JET PARAMETERS
+0.125d0	xjet_bot	x-position of jet outflow (as fraction of lx).
+0.5d0	zjet_bot	z-position of jet outflow (as fraction of lz).
+6.d0	jetmag_bot	Jet velocity ratio
+1.0d0	forcing_bot	Magnitude of Forcing
+0.19d0	for_freq_bot	Strouhal number
+0.0d0	swirl_bot	swirl number
+FRINGE REGION PARAMETERS
+10.d0	fringe_gain	Damping coefficient applied in fringe region.
+FRINGE REGION IN X-DIRECTION
+0	xfringe		Turn on fringe region at end of box in x-direction?
+0.25d0	frac_xbuff	Fraction of box given over to fringe region in x-dir.
+0.10d0	buff_xrise	Fraction of box in x-dir. over which damping fn. rises
+0.05d0	buff_xfall	Fraction of box in x-dir. over which damping fn. falls
+FRINGE REGION IN Z-DIRECTION
+0	zfringe		Turn on fringe region at edges of box in z-direction?
+0.10d0	frac_zbuff	Fraction of box for fringe region in z-dir (each edge)
+0.05d0	buff_zrise	Fraction of box in z-dir. over which damping fn. rises
+0.05d0	buff_zfall	Fraction of box in z-dir. over which damping fn. falls

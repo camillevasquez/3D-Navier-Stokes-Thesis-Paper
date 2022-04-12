@@ -1,0 +1,302 @@
+<CustomFilterDefinitions>
+  <CustomProxyDefinition name="Discriminant4" group="filters">
+    <CompoundSourceProxy id="16651" servers="1">
+      <Proxy group="filters" type="Calculator" id="15838" servers="1" compound_name="Calculator1">
+        <Property name="AttributeType" id="15838.AttributeType" number_of_elements="1">
+          <Element index="0" value="0"/>
+          <Domain name="enum" id="15838.AttributeType.enum">
+            <Entry value="0" text="Point Data"/>
+            <Entry value="1" text="Cell Data"/>
+          </Domain>
+        </Property>
+        <Property name="CoordinateResults" id="15838.CoordinateResults" number_of_elements="1">
+          <Element index="0" value="0"/>
+          <Domain name="bool" id="15838.CoordinateResults.bool"/>
+        </Property>
+        <Property name="Function" id="15838.Function" number_of_elements="1">
+          <Element index="0" value="(1/8)*(-(A_0^2 + 2*A_1*A_3 + A_4^2 + 2*A_2*A_6 + 2*A_5*A_7 + A_8^2)^3 + 6*(A_0^3 + A_4^3 + 3*A_0*(A_1*A_3 + A_2*A_6) + 3*A_1*(A_3*A_4 + A_5*A_6) + 3*A_2*A_3*A_7 + 3*A_4*A_5*A_7 + 3*A_2*A_6*A_8 + 3*A_5*A_7*A_8 + A_8^3)^2)"/>
+        </Property>
+        <Property name="Input" id="15838.Input" number_of_elements="1">
+          <Proxy value="15582" output_port="0"/>
+          <Domain name="groups" id="15838.Input.groups"/>
+          <Domain name="input_array" id="15838.Input.input_array"/>
+          <Domain name="input_type" id="15838.Input.input_type"/>
+        </Property>
+        <Property name="ReplaceInvalidValues" id="15838.ReplaceInvalidValues" number_of_elements="1">
+          <Element index="0" value="1"/>
+          <Domain name="bool" id="15838.ReplaceInvalidValues.bool"/>
+        </Property>
+        <Property name="ReplacementValue" id="15838.ReplacementValue" number_of_elements="1">
+          <Element index="0" value="0"/>
+          <Domain name="range" id="15838.ReplacementValue.range"/>
+        </Property>
+        <Property name="ResultArrayName" id="15838.ResultArrayName" number_of_elements="1">
+          <Element index="0" value="D"/>
+        </Property>
+        <Property name="ResultArrayType" id="15838.ResultArrayType" number_of_elements="1">
+          <Element index="0" value="11"/>
+          <Domain name="enum" id="15838.ResultArrayType.enum">
+            <Entry value="2" text="Char"/>
+            <Entry value="15" text="Signed Char"/>
+            <Entry value="3" text="Unsigned Char"/>
+            <Entry value="4" text="Short"/>
+            <Entry value="5" text="Unsigned Short"/>
+            <Entry value="6" text="Int"/>
+            <Entry value="7" text="Unsigned Int"/>
+            <Entry value="8" text="Long"/>
+            <Entry value="9" text="Unsigned Long"/>
+            <Entry value="10" text="Float"/>
+            <Entry value="11" text="Double"/>
+            <Entry value="12" text="Id Type"/>
+          </Domain>
+        </Property>
+        <Property name="ResultNormals" id="15838.ResultNormals" number_of_elements="1">
+          <Element index="0" value="0"/>
+          <Domain name="bool" id="15838.ResultNormals.bool"/>
+        </Property>
+        <Property name="ResultTCoords" id="15838.ResultTCoords" number_of_elements="1">
+          <Element index="0" value="0"/>
+          <Domain name="bool" id="15838.ResultTCoords.bool"/>
+        </Property>
+      </Proxy>
+      <Proxy group="filters" type="Clip" id="16376" servers="1" compound_name="Clip1">
+        <Property name="ClipFunction" id="16376.ClipFunction" number_of_elements="1">
+          <Proxy value="16365"/>
+          <Domain name="groups" id="16376.ClipFunction.groups"/>
+          <Domain name="proxy_list" id="16376.ClipFunction.proxy_list">
+            <Proxy value="16365"/>
+            <Proxy value="16366"/>
+            <Proxy value="16367"/>
+            <Proxy value="16368"/>
+            <Proxy value="16369"/>
+          </Domain>
+        </Property>
+        <Property name="Exact" id="16376.Exact" number_of_elements="1">
+          <Element index="0" value="0"/>
+          <Domain name="bool" id="16376.Exact.bool"/>
+        </Property>
+        <Property name="HyperTreeGridClipFunction" id="16376.HyperTreeGridClipFunction" number_of_elements="1">
+          <Proxy value="16370"/>
+          <Domain name="groups" id="16376.HyperTreeGridClipFunction.groups"/>
+          <Domain name="proxy_list" id="16376.HyperTreeGridClipFunction.proxy_list">
+            <Proxy value="16370"/>
+            <Proxy value="16371"/>
+            <Proxy value="16372"/>
+            <Proxy value="16373"/>
+            <Proxy value="16374"/>
+            <Proxy value="16375"/>
+          </Domain>
+        </Property>
+        <Property name="Input" id="16376.Input" number_of_elements="1">
+          <Proxy value="16132" output_port="0"/>
+          <Domain name="groups" id="16376.Input.groups"/>
+          <Domain name="input_array" id="16376.Input.input_array"/>
+          <Domain name="input_type" id="16376.Input.input_type"/>
+        </Property>
+        <Property name="InputBounds" id="16376.InputBounds">
+          <Domain name="bounds" id="16376.InputBounds.bounds"/>
+        </Property>
+        <Property name="Invert" id="16376.Invert" number_of_elements="1">
+          <Element index="0" value="1"/>
+          <Domain name="bool" id="16376.Invert.bool"/>
+        </Property>
+        <Property name="PreserveInputCells" id="16376.PreserveInputCells" number_of_elements="1">
+          <Element index="0" value="0"/>
+          <Domain name="bool" id="16376.PreserveInputCells.bool"/>
+        </Property>
+        <Property name="SelectInputScalars" id="16376.SelectInputScalars" number_of_elements="5">
+          <Element index="0" value=""/>
+          <Element index="1" value=""/>
+          <Element index="2" value=""/>
+          <Element index="3" value="0"/>
+          <Element index="4" value="D"/>
+          <Domain name="array_list" id="16376.SelectInputScalars.array_list">
+            <String text="D"/>
+          </Domain>
+        </Property>
+        <Property name="UseValueAsOffset" id="16376.UseValueAsOffset" number_of_elements="1">
+          <Element index="0" value="0"/>
+          <Domain name="bool" id="16376.UseValueAsOffset.bool"/>
+        </Property>
+        <Property name="Value" id="16376.Value" number_of_elements="1">
+          <Element index="0" value="0"/>
+          <Domain name="range" id="16376.Value.range"/>
+        </Property>
+      </Proxy>
+      <Proxy group="filters" type="Contour" id="16132" servers="1" compound_name="Contour1">
+        <Property name="ComputeGradients" id="16132.ComputeGradients" number_of_elements="1">
+          <Element index="0" value="0"/>
+          <Domain name="bool" id="16132.ComputeGradients.bool"/>
+        </Property>
+        <Property name="ComputeNormals" id="16132.ComputeNormals" number_of_elements="1">
+          <Element index="0" value="1"/>
+          <Domain name="bool" id="16132.ComputeNormals.bool"/>
+        </Property>
+        <Property name="ComputeScalars" id="16132.ComputeScalars" number_of_elements="1">
+          <Element index="0" value="1"/>
+          <Domain name="bool" id="16132.ComputeScalars.bool"/>
+        </Property>
+        <Property name="ContourValues" id="16132.ContourValues" number_of_elements="1">
+          <Element index="0" value="0"/>
+          <Domain name="scalar_range" id="16132.ContourValues.scalar_range"/>
+        </Property>
+        <Property name="GenerateTriangles" id="16132.GenerateTriangles" number_of_elements="1">
+          <Element index="0" value="1"/>
+          <Domain name="bool" id="16132.GenerateTriangles.bool"/>
+        </Property>
+        <Property name="Input" id="16132.Input" number_of_elements="1">
+          <Proxy value="15838" output_port="0"/>
+          <Domain name="groups" id="16132.Input.groups"/>
+          <Domain name="input_array" id="16132.Input.input_array"/>
+          <Domain name="input_array_htg" id="16132.Input.input_array_htg"/>
+          <Domain name="input_type" id="16132.Input.input_type"/>
+        </Property>
+        <Property name="Locator" id="16132.Locator" number_of_elements="1">
+          <Proxy value="16129"/>
+          <Domain name="groups" id="16132.Locator.groups"/>
+          <Domain name="proxy_list" id="16132.Locator.proxy_list">
+            <Proxy value="16129"/>
+            <Proxy value="16130"/>
+            <Proxy value="16131"/>
+          </Domain>
+        </Property>
+        <Property name="OutputPointsPrecision" id="16132.OutputPointsPrecision" number_of_elements="1">
+          <Element index="0" value="2"/>
+          <Domain name="enum" id="16132.OutputPointsPrecision.enum">
+            <Entry value="0" text="Single"/>
+            <Entry value="1" text="Double"/>
+            <Entry value="2" text="Same as input"/>
+          </Domain>
+        </Property>
+        <Property name="SelectInputScalars" id="16132.SelectInputScalars" number_of_elements="5">
+          <Element index="0" value=""/>
+          <Element index="1" value=""/>
+          <Element index="2" value=""/>
+          <Element index="3" value="0"/>
+          <Element index="4" value="D"/>
+          <Domain name="array_list" id="16132.SelectInputScalars.array_list">
+            <String text="D"/>
+          </Domain>
+        </Property>
+      </Proxy>
+      <Proxy group="filters" type="UnstructuredGradient" id="15582" servers="1" compound_name="GradientOfUnstructuredDataSet1">
+        <Property name="ComputeDivergence" id="15582.ComputeDivergence" number_of_elements="1">
+          <Element index="0" value="0"/>
+          <Domain name="bool" id="15582.ComputeDivergence.bool"/>
+        </Property>
+        <Property name="ComputeGradient" id="15582.ComputeGradient" number_of_elements="1">
+          <Element index="0" value="1"/>
+          <Domain name="bool" id="15582.ComputeGradient.bool"/>
+        </Property>
+        <Property name="ComputeQCriterion" id="15582.ComputeQCriterion" number_of_elements="1">
+          <Element index="0" value="0"/>
+          <Domain name="bool" id="15582.ComputeQCriterion.bool"/>
+        </Property>
+        <Property name="ComputeVorticity" id="15582.ComputeVorticity" number_of_elements="1">
+          <Element index="0" value="0"/>
+          <Domain name="bool" id="15582.ComputeVorticity.bool"/>
+        </Property>
+        <Property name="ContributingCellOption" id="15582.ContributingCellOption" number_of_elements="1">
+          <Element index="0" value="2"/>
+          <Domain name="enum" id="15582.ContributingCellOption.enum">
+            <Entry value="0" text="All"/>
+            <Entry value="1" text="Patch"/>
+            <Entry value="2" text="Dataset Max"/>
+          </Domain>
+        </Property>
+        <Property name="DivergenceArrayName" id="15582.DivergenceArrayName" number_of_elements="1">
+          <Element index="0" value="Divergence"/>
+        </Property>
+        <Property name="FasterApproximation" id="15582.FasterApproximation" number_of_elements="1">
+          <Element index="0" value="0"/>
+          <Domain name="bool" id="15582.FasterApproximation.bool"/>
+        </Property>
+        <Property name="Input" id="15582.Input" number_of_elements="1">
+          <Domain name="groups" id="15582.Input.groups"/>
+          <Domain name="input_array" id="15582.Input.input_array"/>
+          <Domain name="input_type" id="15582.Input.input_type"/>
+        </Property>
+        <Property name="QCriterionArrayName" id="15582.QCriterionArrayName" number_of_elements="1">
+          <Element index="0" value="Q-criterion"/>
+        </Property>
+        <Property name="ReplacementValueOption" id="15582.ReplacementValueOption" number_of_elements="1">
+          <Element index="0" value="1"/>
+          <Domain name="enum" id="15582.ReplacementValueOption.enum">
+            <Entry value="0" text="Zero"/>
+            <Entry value="1" text="NaN"/>
+            <Entry value="2" text="Data Type Min"/>
+            <Entry value="2" text="Data Type Max"/>
+          </Domain>
+        </Property>
+        <Property name="ResultArrayName" id="15582.ResultArrayName" number_of_elements="1">
+          <Element index="0" value="A"/>
+        </Property>
+        <Property name="SelectInputScalars" id="15582.SelectInputScalars" number_of_elements="5">
+          <Element index="0" value=""/>
+          <Element index="1" value=""/>
+          <Element index="2" value=""/>
+          <Element index="3" value="0"/>
+          <Element index="4" value="flowvec"/>
+          <Domain name="array_list" id="15582.SelectInputScalars.array_list">
+            <String text="flowvec"/>
+          </Domain>
+        </Property>
+        <Property name="VorticityArrayName" id="15582.VorticityArrayName" number_of_elements="1">
+          <Element index="0" value="Vorticity"/>
+        </Property>
+      </Proxy>
+      <Proxy group="incremental_point_locators" type="MergePoints" id="16129" servers="1" compound_name="auto_16129">
+        <Property name="Divisions" id="16129.Divisions" number_of_elements="3">
+          <Element index="0" value="50"/>
+          <Element index="1" value="50"/>
+          <Element index="2" value="50"/>
+        </Property>
+        <Property name="NumberOfPointsPerBucket" id="16129.NumberOfPointsPerBucket" number_of_elements="1">
+          <Element index="0" value="8"/>
+        </Property>
+      </Proxy>
+      <Proxy group="implicit_functions" type="Plane" id="16365" servers="21" compound_name="auto_16365">
+        <Property name="Normal" id="16365.Normal" number_of_elements="3">
+          <Element index="0" value="0"/>
+          <Element index="1" value="1"/>
+          <Element index="2" value="0"/>
+          <Domain name="range" id="16365.Normal.range"/>
+        </Property>
+        <Property name="Offset" id="16365.Offset" number_of_elements="1">
+          <Element index="0" value="0"/>
+        </Property>
+        <Property name="Origin" id="16365.Origin" number_of_elements="3">
+          <Element index="0" value="9.351146697998047"/>
+          <Element index="1" value="0"/>
+          <Element index="2" value="3.0925052165985107"/>
+          <Domain name="range" id="16365.Origin.range"/>
+        </Property>
+      </Proxy>
+      <Proxy group="implicit_functions" type="Plane" id="16370" servers="21" compound_name="auto_16370">
+        <Property name="Normal" id="16370.Normal" number_of_elements="3">
+          <Element index="0" value="1"/>
+          <Element index="1" value="0"/>
+          <Element index="2" value="0"/>
+          <Domain name="range" id="16370.Normal.range"/>
+        </Property>
+        <Property name="Offset" id="16370.Offset" number_of_elements="1">
+          <Element index="0" value="0"/>
+        </Property>
+        <Property name="Origin" id="16370.Origin" number_of_elements="3">
+          <Element index="0" value="9.351146697998047"/>
+          <Element index="1" value="0"/>
+          <Element index="2" value="3.0925052165985107"/>
+          <Domain name="range" id="16370.Origin.range"/>
+        </Property>
+      </Proxy>
+      <ExposedProperties>
+        <Property name="Input" proxy_name="GradientOfUnstructuredDataSet1" exposed_name="Input"/>
+        <Property name="ContourValues" proxy_name="Contour1" exposed_name="Isosurfaces"/>
+      </ExposedProperties>
+      <OutputPort name="Output" proxy="Clip1" port_index="0"/>
+      <Hints>
+        <ShowInMenu/>
+      </Hints>
+    </CompoundSourceProxy>
+  </CustomProxyDefinition>
+</CustomFilterDefinitions>

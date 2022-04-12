@@ -1,0 +1,122 @@
+
+F95 = ifort -c  
+F95LIBS = -Wl,-rpath,$(TACC_FFTW3_LIB) -L$(TACC_FFTW3_LIB) -lfftw3_mpi -lfftw3 
+F95INCL = -I$(TACC_FFTW3_INC)
+F95LINK = ifort
+# LAM-MPI 
+MPIF95 = mpif90 -c  
+MPIF95LINK = mpif90  
+MPIF95LIBS =
+
+OBJECTS = runparms.o   gridparms.o   diff_int.o  data.o   solve.o  setup.o  \
+	  transform.o  read_write.o  init_vel.o  init_jet_buffer.o \
+	  pass2.o pass1_linearized.o pass_data.o   inlinelimiter.o \
+	  pass1.o step3.o flux3.o rpn3.o rpt3.o rptt3.o dimsp3.o step3ds.o \
+	  main_mpi.o
+
+mpiflow: $(OBJECTS)
+	$(MPIF95LINK) $(F95FLAGS) -o mpiflow $(OBJECTS) \
+	$(F95INCL) $(MPIF95LIBS) $(F95LIBS)
+
+stats: stats.f90 setup.o
+	$(MPIF95LINK) $(F95FLAGS) -o stats stats.f90 \
+	runparms.o gridparms.o  setup.o data.o \
+	$(MPIF95LIBS) $(F95LIBS) $(F95INCL)
+
+compare: compare.f90 $(OBJECTS)
+	$(MPIF95LINK) $(F95FLAGS) -o compare compare.f90 $(OBJECTS) \
+	$(MPIF95LIBS) $(F95LIBS)
+
+convert: convert.f90 setup.o transform.o data.o
+	$(MPIF95LINK) $(F95FLAGS) -o convert_vel convert.f90 setup.o \
+	runparms.o gridparms.o  transform.o data.o \
+	$(MPIF95LIBS) $(F95LIBS)
+
+reset_time: reset_time.f90 setup.o transform.o data.o
+	$(MPIF95LINK) $(F95FLAGS) -o reset_time reset_time.f90 setup.o \
+	runparms.o gridparms.o transform.o data.o $(MPIF95LIBS) $(F95LIBS)
+
+add_noise: add_noise.f90 setup.o transform.o data.o solve.o read_write.o pass_data.o diff_int.o
+	$(MPIF95LINK) $(F95FLAGS) -o add_noise add_noise.f90 setup.o \
+	runparms.o gridparms.o data.o solve.o read_write.o transform.o \
+	pass_data.o diff_int.o $(MPIF95LIBS) $(F95LIBS) $(F95INCL)
+
+arnoldi: arnoldi.f90 $(OBJECTS)
+	$(MPIF95LINK) $(F95FLAGS) -o arnoldi arnoldi.f90 \
+	setup.o runparms.o gridparms.o  transform.o data.o \
+	pass1_linearized.o solve.o diff_int.o pass2.o init_jet_buffer.o \
+	$(MPIF95LIBS) -lparpack -larpack $(F95LIBS) $(F95INCL)
+
+extract_efn: extract_efn.f90 $(OBJECTS)
+	$(MPIF95LINK) $(F95FLAGS) -o extract_efn extract_efn.f90 \
+	setup.o runparms.o gridparms.o  transform.o data.o \
+	pass1_linearized.o solve.o diff_int.o pass2.o init_jet_buffer.o \
+	$(MPIF95LIBS) $(F95LIBS) -L/usr/local/lib -lparpack -larpack \
+	-llapack -lf77blas -lcblas -latlas $(F95INCL)
+
+convert_float: convert_float.f90 $(OBJECTS)
+	$(MPIF95LINK) $(F95FLAGS) -o convert_float convert_float.f90\
+	setup.o runparms.o gridparms.o  transform.o data.o \
+	pass1_linearized.o solve.o diff_int.o pass2.o init_jet_buffer.o \
+	$(MPIF95LIBS) $(F95LIBS) $(F95INCL)
+
+test_jet: test_jet_forcing.f90
+	$(MPIF95LINK) $(F95FLAGS) -o test_jet \
+	runparms.f90 gridparms.f90 data.f90 diff_int.f90 solve.f90 \
+	setup.f90 transform.f90 pass2.f90 test_jet_forcing.f90 \
+	$(MPIF95LIBS) $(F95LIBS) $(F95INCL)
+
+
+runparms.o: runparms.f90
+	$(MPIF95) $(F95FLAGS) runparms.f90
+
+gridparms.o: gridparms.f90
+	$(MPIF95) $(F95FLAGS) gridparms.f90
+
+data.o: data.f90
+	$(MPIF95) $(F95FLAGS) data.f90
+
+diff_int.o: diff_int.f90 gridparms.o
+	$(MPIF95) $(F95FLAGS) diff_int.f90
+
+solve.o: solve.f90 runparms.o diff_int.o
+	$(MPIF95) $(F95FLAGS) solve.f90
+
+setup.o: setup.f90 runparms.o gridparms.o  data.o
+	$(MPIF95) $(F95FLAGS) setup.f90
+
+transform.o: transform.f90 runparms.o gridparms.o 
+	$(MPIF95) $(F95FLAGS) transform.f90
+
+pass_data.o: pass_data.f90 runparms.o gridparms.o
+	$(MPIF95) $(F95FLAGS) pass_data.f90
+
+read_write.o: read_write.f90 setup.o data.o transform.o pass_data.o
+	$(MPIF95) $(F95FLAGS) read_write.f90 $(F95INCL) 
+
+pass1.o: pass1.f90 transform.o data.o
+	$(MPIF95) $(F95FLAGS)  pass1.f90
+
+pass1_linearized.o: pass1_linearized.f90 transform.o data.o setup.o
+	$(MPIF95) $(F95FLAGS) pass1_linearized.f90 $(F95INCL) 
+
+pass2.o: pass2.f90 solve.o diff_int.o data.o transform.o
+	$(MPIF95) $(F95FLAGS)  pass2.f90
+
+init_jet_buffer.o: init_jet_buffer.f90 transform.o
+	$(MPIF95) $(F95FLAGS) init_jet_buffer.f90
+
+init_vel.o: init_vel.f90 pass1.o solve.o read_write.o init_jet_buffer.o \
+	pass2.o pass1_linearized.o
+	$(MPIF95) $(F95FLAGS) init_vel.f90
+
+main_mpi.o: main_mpi.f90 init_vel.o pass1.o pass1_linearized.o pass2.o
+	$(MPIF95) $(F95FLAGS) main_mpi.f90
+
+%.o: %.f
+	$(MPIF95) $(F95FLAGS) -o $@ $<
+
+
+.PHONY: clean
+clean:
+	rm -f *.o *.g90 *.mod *.il *.d *.out fort.*
